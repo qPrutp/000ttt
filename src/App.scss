@@ -1,4 +1,11 @@
-#root {
+body {
+    font-family: 'Titillium Web', sans-serif;
+    
+    .middle {
+        display: flex;
+        align-items: center;
+    }
+
     .header {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -7,19 +14,12 @@
             font-size: 1.6rem;
         }
 
-        .middle {
-            display: flex;
-            align-items: center;
-        }
-
         legend {
             font-size: .7rem;
         }
     }
 
     .content {
-        padding-left: 15px;
-        padding-right: 15px;
         & > * {
             padding-left: 5px;
             padding-right: 5px;
@@ -27,6 +27,96 @@
 
         h2 {
             font-size: 1.4rem;
+        }
+
+        .appoint, .in-work {
+            padding-bottom: 5px;
+        }
+
+        .appoint {
+            &-item {
+                margin-bottom: 5px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: #17a2b826;
+                font-weight: 500;
+                font-size: .9rem;
+                &:hover {background-color: #17a2b847;}
+
+                div[class^="col-"]:not(:last-child) {
+                    border-bottom: 1px solid #dcdcf4;
+                    margin-bottom: 2px;
+                }
+                @media screen and (min-width: 720px) {
+                    div[class^="col-"]:not(:last-child) {
+                        border-bottom: none;
+                        margin-bottom: 0px;
+                    }
+                }
+                
+                .btn-group { float: right; }
+            }
+        }
+
+        .in-work {
+            &-search {
+                margin-left: 20px;
+                max-width: 320px;
+                div[aria-label="Search"] {
+                    position: relative;
+                    .bi-search {
+                        position: absolute;
+                        bottom: 9px;
+                    }
+                    input[aria-label="Search"] {
+                        padding-left: 20px;
+                        padding-right: 14px;
+                        border-left: 0;
+                        border-top: 0;
+                        border-right: 0;
+                        border-bottom: 2px solid #ced4da;
+                        border-radius: 0;
+                        outline: 0;
+                        box-shadow: none;
+                        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+                    
+                        &:focus {
+                            border-bottom: 2px solid #5193d4;
+                        }
+                    }
+                    span[aria-label="Clear"] {
+                        position: absolute;
+                        top: 2px;
+                        right: 3px;
+                        color: grey;
+                        cursor: pointer;
+                        &:hover {
+                            color: black;
+                        }
+                    }
+                }
+            }
+
+            &-content {
+                overflow: auto;
+
+                table {
+                    min-width: 1135px;
+                    font-size: .9rem;
+                    thead {
+                        background-color: lightskyblue;
+                    }
+                    th, tr td:not(:last-child) {padding-right: 0;}
+                    tr td:last-child {
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+                   
+                    tbody tr:hover {
+                        background-color: rgba(0, 0, -2, .12);
+                    }
+                }
+            }
         }
     }
 }

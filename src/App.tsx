@@ -1,6 +1,9 @@
 import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 
+import BtnCheckCircle from './ui/btn-check-circle';
+import BtnXCircle from './ui/btn-x-circle';
+import FormInWorkSearch from './ui/form-in-work-search';
 import './App.scss';
 
 type ExitType = () => void;
@@ -11,7 +14,7 @@ interface Props {
   titleBtnBack: string
   titleBtnExit: string
   emptyFilialList: string
-  titleAppointTask: string
+  titleAppoint: string
   titleInWork: string
 }
 
@@ -51,10 +54,10 @@ function App(props: Props) {
         </div>
       </header>
 
-      <main className="content">
+      <main className="ml-md-3 mr-md-3 content">
         <section className="shadow-sm mb-3 border appoint">
-          <h2>
-            {props.titleAppointTask}
+          <h2 className="appoint-title">
+            {props.titleAppoint}
             <span className="ml-2 text-success">
               <svg width=".5em" height="1em" viewBox="0 0 16 16" className="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="8" cy="8" r="8"/>
@@ -62,10 +65,30 @@ function App(props: Props) {
             </span>
           </h2>
 
+          <div className="appoint-content">
+            {[1,2,3].map((item, i) =>{
+                  return (
+                    <div key={i} className="container-fluid appoint-item">
+                      <div className="row">
+                        <div className="col-12 col-md-4">Котлова Яна Сергіївна(Торговый отдел)</div>
+                        <div className="col-12 col-md-4">Вывези в торговый зал 1 РК Консервацыя, масло</div>
+                        <div className="col-12 col-md-3">Консервация, масло</div>
+                        <div className="col-12 col-md-1">
+                          <div className="btn-group" role="group">
+                            <BtnCheckCircle class={"btn btn-sm btn-success middle"} />
+                            <BtnXCircle class={"btn btn-sm btn-danger middle"} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }
+            )}
+          </div>
         </section>
 
         <section className="shadow-sm border in-work">
-          <h2>
+          <h2 className="in-work-title">
             {props.titleInWork}
             <span className="ml-2 text-warning">
               <svg width=".5em" height="1em" viewBox="0 0 16 16" className="bi bi-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -73,6 +96,40 @@ function App(props: Props) {
               </svg>
             </span>
           </h2>
+
+          <FormInWorkSearch />
+
+          <div className="in-work-content">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Название филиала</th>
+                  <th>ФИО</th>
+                  <th>Текст задачи</th>
+                  <th>Локация</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {[1,2,3,4,5,6,7,1,2,3,4,5,6].map((item, i) =>{
+                  return (
+                    <tr key={i}>
+                      <td>Львів Сільпо Південний</td>
+                      <td>Котлова Яна Сергіївна(Торговый отдел)</td>
+                      <td>Вывези в торговый зал 1 РК Консервацыя, масло</td>
+                      <td>Консервация, масло</td>
+                      <td>
+                        <div className="btn-group" role="group">
+                          <BtnCheckCircle class={"btn btn-sm btn-success middle"} />
+                          <BtnXCircle class={"btn btn-sm btn-danger middle"} />
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
         </section>
       </main>
     </Fragment>
@@ -85,7 +142,7 @@ App.defaultProps = {
   titleBtnBack: "вернутся к модулям",
   titleBtnExit: "к авторизации",
   emptyFilialList: "Данных нет!",
-  titleAppointTask: "Назначить задачу:",
+  titleAppoint: "Назначить задачу:",
   titleInWork: "Задачи в работе:"
 }
 
